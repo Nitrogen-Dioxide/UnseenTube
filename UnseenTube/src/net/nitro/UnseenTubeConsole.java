@@ -25,9 +25,9 @@ public class UnseenTubeConsole extends Messages {
 			get = scr.getTitles();
 			cvt.onlyViews(scr.views);
 			cvt.setInt(scr.views);
-			cvt.getMin();
+			cvt.getMin(); // find the first videos.
 			do {
-				if (maxView >= cvt.min && get == true) {
+				if (maxView >= cvt.min && get == true) { // prints the video data (if minview matches)
 					System.out.println("\n-----------------------------\n"
 							+ "Title: " + scr.titles[cvt.minIndex]
 							+ "\nViews: " + cvt.views[cvt.minIndex]
@@ -40,7 +40,7 @@ public class UnseenTubeConsole extends Messages {
 					found++;
 				}
 
-				if (maxView < cvt.min) {
+				if (maxView < cvt.min) { // go to the next page, and reload the video data
 					page++;
 					scr.connect(link + page);
 					if (!scr.getViews())
@@ -65,9 +65,10 @@ public class UnseenTubeConsole extends Messages {
 
 	}
 	
-	public void set(String search, int views){
+	public void set(String search, int views){ // used to set and reload the UTC object
 		link = "https://www.youtube.com/results?filters=video%2C+year&search_query="
 				+ search + "&page=";
 		maxView = views;
+		page = 2;
 	}
 }
